@@ -27,11 +27,9 @@ class PostController extends Controller
         return view('post.list')->with(['posts' => $posts,
                                         'provinces' => $provinces,
                                         'categories' => $categories]);
-        
     }
     public function filter(Request $request)
     {
-
         $provinces = Province::all();
         $categories = Category::all();
 
@@ -42,12 +40,9 @@ class PostController extends Controller
         $posts = new Post;
         $posts = $category->posts()->where('province_id', $provinceId)->get();
           
-       
         return view('post.list')->with(['posts' => $posts,
                                         'provinces' => $provinces,
                                         'categories' => $categories]);
-
- 
     }
     /**
      * Show the form for creating a new resource.
@@ -56,13 +51,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
         $categories = Category::all();
         $provinces = Province::all();
         $districts = District::all();
         $wards = Ward::all();
-        //$provinces = Province::all();
-
         return view('post.create')->with(['categories' => $categories,
                                             'provinces' => $provinces,
                                             'districts' => $districts,
@@ -77,24 +69,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        
-    
 		$post = new Post;
-		
         $post->fill( $request->all() );
         $post->author = auth()->user()->id;
         $post->save();
         $categories = $request->categories_;
-        
         foreach($categories as $categoryId)
         {
             $category = Category::find($categoryId);
             $post->categories()->attach($category);
         }
-        
-        
         return redirect('post/create')->with('success', true);
-        
     }
 
     /**

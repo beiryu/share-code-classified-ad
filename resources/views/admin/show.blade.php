@@ -4,16 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-
             <div class="card">
-                
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-header">
-                    
+                    {{ __('Dashboard') }}
+                </div>
 
+                <div class="card-header">
                     {{ __('Thong Tin') }}
                 </div>
+
                 <div class="card-body">
                     <form action="{{ route('user.store') }}" method="post" class="form">
                         @csrf
@@ -39,16 +39,12 @@
                 </div>
                 @if (session('success'))
                 <div class="card-body">
-                    
-                        <div class="alert alert-success">
-                            {{ __('Updated') }}
-                        </div>
-                   
+                    <div class="alert alert-success">
+                        {{ __('Updated') }}
+                    </div>
                 </div>
                 @endif
 
-               
-                
                 <div class="card-header">
                     {{ __('Quan Ly Bai Viet')}}
                 </div>
@@ -59,7 +55,6 @@
                             @csrf
                             @method('DELETE')     
                             <a href="#" style="font-weight: bold">{{ $post->title }}</a>
-                        
                             @if ($post->is_vip)
                                 <label style="color:red">VIP</label>
                             @endif
@@ -76,7 +71,6 @@
                     <div class="card-body">
                         <form action="{{ route('user.edit', [$user->id]) }}" class="form">
                             @csrf
-                            
                             <label style="font-weight: bold">Name: {{ $user->name }}</label>
                             <br>
                             Email: {{ $user->email }}
@@ -84,6 +78,7 @@
                         </form>
                     </div>
                 @endforeach
+            </div>
         </div>
     </div>
 </div>
