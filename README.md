@@ -1,5 +1,5 @@
 # Classified Advertising
-ạo một website rao vặt với các tính năng sau:
+Một website rao vặt với các tính năng sau:
 - Login:
 	Đăng nhập, đăng ký bằng username và mật khẩu, 
 	có thể đăng nhập bằng mạng xã hội
